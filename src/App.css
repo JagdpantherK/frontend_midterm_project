@@ -9,16 +9,21 @@
 .textarea {
   font-size: 2rem;
 }
-
+#text{
+  color: red;
+  padding: 20px;
+}
+button{
+  font-size: 20px;
+  padding: 10px 20px;
+}
 .App-logo {
   height: 100px;
   width: 100px;
   position: relative;
   pointer-events: none;
   animation: App-logo-jump 0.9s infinite;
-
 }
-
 @keyframes App-logo-jump {
   10%{
     height: 100px;

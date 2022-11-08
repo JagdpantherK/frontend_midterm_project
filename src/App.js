@@ -1,35 +1,39 @@
 import './App.css';
 import logo from './assets/logo.png'
 import Textarea from "./components/Textarea";
-const btn = document.querySelector("#button")
-btn.addEventListener("click", (where, element) =>{
-    console.log("Button clicked");
-    let text = document.querySelector("#textarea");
-    let result = document.querySelector("#text")
-    result.innerHTML = ceasar(text);
-});
+import React from "react";
 function ceasar(str){
-    let solved = "";
-    for (let i = 0; i < str.length; i++) {
-        let asciiNum = str[i].charCodeAt();
-        if (asciiNum >= 65 && asciiNum <= 90){
-            solved += String.fromCharCode(asciiNum + 13)
+    let lowerCase = str.toLowerCase();
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    let newStr = '';
+
+    for (let i = 0; i < lowerCase.length; i++) {
+        let currentLetter = lowerCase[i];
+        if (currentLetter === ' '){
+            newStr += currentLetter;
+            continue;
         }
-        else if(asciiNum >= 78 && asciiNum <=90){
-            solved += String.fromCharCode(asciiNum - 13)
+        let currentIndex = alphabet.indexOf(currentLetter);
+        let newIndex = currentIndex + 4;
+        if (newIndex > 25) newIndex = newIndex - 26;
+        if (newIndex < 0) newIndex = newIndex + 26;
+        if (str[i] === str[i].toUpperCase()){
+            newStr += alphabet[newIndex].toUpperCase();
         }
-        else {
-            solved = str[i];
-        }
+        else newStr += alphabet[newIndex];
     }
-    return solved;
+    return newStr;
 }
 function App() {
     return (
         <div className="App">
             <body className="App-body">
+            <div id="text" >Click it to encrypt your text</div>
             <div>
                 <Textarea/>
+            </div>
+            <div>
+                <button onClick={buttonClicked}>Encrypt</button>
             </div>
                 <div>
                     <img className="App-logo" src={logo} alt="logo"/>
@@ -40,3 +44,11 @@ function App() {
 }
 
 export default App;
+
+function buttonClicked(){
+    let text = document.getElementById("textarea");
+    let result = document.getElementById("text")
+    console.log("Button clicked");
+    console.log(text.value);
+    result.innerHTML = ceasar(text.value);
+}
