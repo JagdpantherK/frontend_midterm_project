@@ -3,7 +3,7 @@ import logo from './assets/logo.png'
 import Textarea from "./components/Textarea";
 import React from "react";
 function ceasar(str){
-    let lowerCase = str.toLowerCase();
+    let lowerCase = str.toLowerCase().replace(/[0-9]/g, ' ');
     let alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
     let newStr = '';
 
