@@ -1,6 +1,7 @@
 import './App.css';
 import logo from './assets/logo.png'
 import Textarea from "./components/Textarea";
+
 function App() {
     return (
         <div className="App">
